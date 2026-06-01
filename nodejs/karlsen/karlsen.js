@@ -324,7 +324,7 @@ function __wasm_bindgen_func_elem_17940(arg0, arg1, arg2, arg3) {
 }
 
 function __wasm_bindgen_func_elem_17939(arg0, arg1, arg2) {
-    wasm.__wasm_bindgen_func_elem_17939(arg0, arg1, arg2);
+    wasm.__wasm_bindgen_func_elem_17939(arg0, arg1, typeof arg2 === "number" ? arg2 : addHeapObject(arg2));
 }
 
 function __wasm_bindgen_func_elem_844(arg0, arg1) {
