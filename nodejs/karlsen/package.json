@@ -1,0 +1,20 @@
+{
+  "name": "karlsen-wasm",
+  "collaborators": [
+    "Karlsen developers"
+  ],
+  "description": "Karlsen WASM bindings",
+  "version": "3.1.1",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karlsen-network/rusty-karlsen"
+  },
+  "files": [
+    "karlsen_bg.wasm",
+    "karlsen.js",
+    "karlsen.d.ts"
+  ],
+  "main": "karlsen.js",
+  "types": "karlsen.d.ts"
+}
