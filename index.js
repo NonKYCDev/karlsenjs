@@ -34,6 +34,26 @@ if (typeof globalThis.WebSocket === "undefined") {
 }
 
 // ---------------------------------------------------------------------------
+// Web Crypto polyfill.
+//
+// The WASM client (via ahash -> getrandom) needs `crypto.getRandomValues` at
+// RpcClient *construction* time. Node only exposes a global `crypto` from
+// ~v19+, so on Node 16/18 it is missing and `new RpcClient(...)` aborts with a
+// bare `RuntimeError: unreachable` (the underlying panic is
+// "getrandom::fill() failed"). Supply it from node:crypto's webcrypto when
+// absent. Must run before the WASM module is loaded/used below.
+// ---------------------------------------------------------------------------
+
+if (typeof globalThis.crypto === "undefined" ||
+    typeof globalThis.crypto.getRandomValues !== "function") {
+    try {
+        globalThis.crypto = require("crypto").webcrypto;
+    } catch (_) {
+        // Pre-webcrypto Node (<15): nothing to do; getrandom will fail loudly.
+    }
+}
+
+// ---------------------------------------------------------------------------
 // Load the Karlsen WASM Node bundle.
 //
 // rusty-karlsen's WASM crate is `karlsen-wasm`; its Node build lands at

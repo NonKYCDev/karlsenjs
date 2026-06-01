@@ -37,6 +37,13 @@ the global `WebSocket`, which Node only provides natively from v21+. On Node
 16 (NonKYC's stack) the shim installs `websocket`'s `w3cwebsocket` as the
 global automatically; on newer Node it's a no-op.
 
+Similarly, the WASM client needs a global Web `crypto` (`getRandomValues`,
+used by `ahash`/`getrandom`) at `RpcClient` construction. Node only exposes a
+global `crypto` from ~v19+, so on Node 16/18 the shim polyfills it from
+`node:crypto`'s `webcrypto` (no extra dependency). Without this, constructing a
+client on older Node aborts with a bare `RuntimeError: unreachable`
+("getrandom::fill() failed").
+
 ## Usage
 
 ```js
