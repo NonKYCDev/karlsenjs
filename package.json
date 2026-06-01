@@ -1,0 +1,10 @@
+{
+  "name": "karlsenjs",
+  "version": "0.1.0",
+  "description": "kaspajs-compatible shim over the Karlsen (rusty-karlsen) WASM RpcClient",
+  "main": "index.js",
+  "license": "ISC",
+  "dependencies": {
+    "websocket": "^1.0.34"
+  }
+}

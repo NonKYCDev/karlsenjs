@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+
+# NOTE: the karlsen-wasm Node bundle IS intentionally committed under
+# nodejs/karlsen/ so a clone is self-contained — it is deliberately NOT
+# ignored here. See README "Building / refreshing the WASM bundle".
+
+# logs / env / editor / OS cruft
+*.log
+.env
+.DS_Store
+.idea/
+.vscode/
